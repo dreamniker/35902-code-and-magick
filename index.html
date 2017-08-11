@@ -189,7 +189,7 @@
   var getWizardHeight = function(width) {
     return wizardProportion * wizardWidth;
   }
-  var wizardHeight = getWizardHeight(wizardWidth);
+  getWizardHeight(wizardWidth);
 
   // wizard coordinates
   function getWizardX(width) {
@@ -197,7 +197,7 @@
   }
 
   function getWizardY(height) {
-    return height / 3 - wizardHeight;
+    return height / 3 - getWizardHeight(wizardWidth);
   }
 
 </script>
