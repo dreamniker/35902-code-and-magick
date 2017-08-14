@@ -1,6 +1,6 @@
 'use strict';
 
-window.renderCloud = function (ctx, cloudColor, shadowColor) {
+var renderCloud = function (ctx, cloudColor, shadowColor) {
   ctx.beginPath();
   ctx.arcTo(110, 20, 620, 20, 50);
   ctx.bezierCurveTo(620, 20, 560, 190, 460, 290);
@@ -19,14 +19,14 @@ window.renderCloud = function (ctx, cloudColor, shadowColor) {
   ctx.fill();
 };
 
-window.renderTitle = function (ctx, startX, titleColor) {
+var renderTitle = function (ctx, startX, titleColor) {
   ctx.fillStyle = titleColor;
   ctx.font = 'bold 14px PT Mono';
   ctx.fillText('Ура! Вы победили!!', startX, 40);
   ctx.fillText('Список результатов:', startX, 60);
 };
 
-window.renderHistogram = function (ctx, names, times, startX, hHeight, hWidth, hIndentX, hIndentY, yourColor, playersColor, nameColor, timeColor) {
+var renderHistogram = function (ctx, names, times, startX, hHeight, hWidth, hIndentX, hIndentY, yourColor, playersColor, nameColor, timeColor) {
   var max = -1;
 
   for (var i = 0; i < times.length; i++) {
@@ -57,10 +57,10 @@ window.renderStatistics = function (ctx, names, times) {
 
   var startX = 135;
 
-  window.renderCloud(ctx, 'rgb(255, 255, 255)', 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, 'rgb(255, 255, 255)', 'rgba(0, 0, 0, 0.7)');
 
-  window.renderTitle(ctx, startX, 'rgb(117, 18, 142)');
+  renderTitle(ctx, startX, 'rgb(117, 18, 142)');
 
-  window.renderHistogram(ctx, names, times, startX, 150, 40, 50, 90, 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, ' + Math.random() + ' )', 'rgb(0, 0, 255)', 'rgb(0, 0, 0)');
+  renderHistogram(ctx, names, times, startX, 150, 40, 50, 90, 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, ' + Math.random() + ' )', 'rgb(0, 0, 255)', 'rgb(0, 0, 0)');
 
 };
