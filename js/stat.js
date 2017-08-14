@@ -28,13 +28,11 @@ window.renderTitle = function (ctx, startX, titleColor) {
 
 window.renderHistogram = function (ctx, names, times, startX, hHeight, hWidth, hIndentX, hIndentY, yourColor, playersColor, nameColor, timeColor) {
   var max = -1;
-  var maxIndex = -1;
 
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
     if (time > max) {
       max = time;
-      maxIndex = i;
     }
   }
 
@@ -42,7 +40,7 @@ window.renderHistogram = function (ctx, names, times, startX, hHeight, hWidth, h
 
   for (var j = 0; j < times.length; j++) {
 
-    (names[j] === 'Вы') ? ctx.fillStyle = yourColor : ctx.fillStyle = playersColor;
+    ctx.fillStyle = ((names[j] === 'Вы') ? yourColor : playersColor);
 
     ctx.fillRect(startX + (hWidth + hIndentX) * j, hHeight - (step * times[j]) + hIndentY, hWidth, step * times[j]);
 
