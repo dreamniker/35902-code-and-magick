@@ -26,28 +26,30 @@ var renderTitle = function (ctx, startX, titleColor) {
   ctx.fillText('Список результатов:', startX, 60);
 };
 
-var renderHistogram = function (ctx, names, times, startX, hHeight, hWidth, hIndentX, hIndentY, yourColor, playersColor, nameColor, timeColor) {
+var renderHistogram = function (ctx, names, times, startX, hHeight, hWidth, hIndentX, hIndentY) {
   var max = -1;
+  var YOUR_COLOR = 'rgba(255, 0, 0, 1)';
+  var PLAYERS_COLOR = 'rgba(0, 0, 255, ' + Math.random() + ' )';
+  var NAME_COLOR = 'rgb(0, 0, 255)';
+  var TIME_COLOR = 'rgb(0, 0, 0)';
 
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
-    if (time > max) {
-      max = time;
-    }
+    max = Math.max(time, max);
   }
 
   var step = hHeight / max;
 
   for (var j = 0; j < times.length; j++) {
 
-    ctx.fillStyle = ((names[j] === 'Вы') ? yourColor : playersColor);
+    ctx.fillStyle = ((names[j] === 'Вы') ? YOUR_COLOR : PLAYERS_COLOR);
 
     ctx.fillRect(startX + (hWidth + hIndentX) * j, hHeight - (step * times[j]) + hIndentY, hWidth, step * times[j]);
 
-    ctx.fillStyle = timeColor;
+    ctx.fillStyle = TIME_COLOR;
     ctx.fillText(Math.round(times[j]), startX + (hWidth + hIndentX) * j, hHeight - (step * times[j]) + (hIndentY - 10));
 
-    ctx.fillStyle = nameColor;
+    ctx.fillStyle = NAME_COLOR;
     ctx.fillText(names[j], startX + (hWidth + hIndentX) * j, hHeight + hIndentY * 1.2);
   }
 
@@ -61,6 +63,6 @@ window.renderStatistics = function (ctx, names, times) {
 
   renderTitle(ctx, startX, 'rgb(117, 18, 142)');
 
-  renderHistogram(ctx, names, times, startX, 150, 40, 50, 90, 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, ' + Math.random() + ' )', 'rgb(0, 0, 255)', 'rgb(0, 0, 0)');
+  renderHistogram(ctx, names, times, startX, 150, 40, 50, 90);
 
 };
